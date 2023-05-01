@@ -81,6 +81,33 @@ public class TestTendencias {
         Assertions.assertEquals(Normal.class.getName(),cancion.getPopularidad().getClass().getName());
         Assertions.assertEquals(6,cancion.getCantDislikes());
     }
+    @Test
+    @DisplayName("The Scientist es tendencia por récord de reproducciones y cantidad de personas que le gusta el tema.")
+    public void popularidadEnTendencia(){
+        cancion.reproducir();
+        cancion.reproducir();
+        cancion.reproducir();
 
+        Assertions.assertTrue(cancion.detalleCompleto().contains(EnAuge.armarLeyendaPara(this.cancion)));
+
+        cancion.recibirLike();
+        cancion.recibirLike();
+        cancion.recibirLike();
+        cancion.recibirLike();
+
+        cancion.reproducir();
+        cancion.reproducir();
+        cancion.reproducir();
+        cancion.reproducir();
+
+
+        String detalle = cancion.detalleCompleto();
+
+        Assertions.assertTrue(detalle.contains(EnTendencia.armarLeyendaPara(cancion)));
+        Assertions.assertEquals(4,cancion.getCantLikes());
+
+
+
+    }
 
 }
